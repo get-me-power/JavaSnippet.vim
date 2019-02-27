@@ -6,6 +6,10 @@ Javaのsnippet補完をするpluginです
 
 ## 使い方
 
+## これから追加したい機能
+
+GetterとSetterのsnippet補完
+
 
 
 
