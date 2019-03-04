@@ -3,9 +3,9 @@ if exists('g:loaded_JavaSnippet')
 endif
 
 let g:loaded_JavaSnippet = 1
-command! -nargs=+ Javasnippet call Javasnippet(<f-args>)
+command! -nargs=+ Javasnippet call Javasnippet#snippet(<f-args>)
 
 augroup plugin-JavasnippetFirst
     autocmd!
-    autocmd FileType java call JavasnippetFirst()
+    autocmd FileType java call Javasnippet#snippet_first()
 augroup END
