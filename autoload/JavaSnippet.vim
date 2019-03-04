@@ -46,5 +46,3 @@ function! Javasnippet#snippet_first() abort
         call append('2', "}")
     endif
 endfunction 
-
-"autocmd FileType java call JavasnippetFirst()
