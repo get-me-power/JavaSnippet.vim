@@ -2,7 +2,7 @@
 "nargs=0は引数を取らないという意味
 
 "好きなタイミングでJavaのsnippet補完を呼べるようにする
-function! Javasnippet(access, class) abort
+function! Javasnippet#snippet(access, class) abort
     let filetype = s:Filetype()
     let accessname = a:access
     let classname = a:class
@@ -35,7 +35,7 @@ function! s:Writebuffor(accessname, classname) abort
     endif
 endfunction "Writebuffor
 
-function! JavasnippetFirst() abort
+function! Javasnippet#snippet_first() abort
     call append('0', "public class ".expand("%:r"). " {")
     if expand("%:r") ==# 'Main'
         call append('1', "    public static void main(String[] args) {")
