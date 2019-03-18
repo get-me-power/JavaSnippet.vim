@@ -45,4 +45,19 @@ function! Javasnippet#snippet_first() abort
     else
         call append('2', "}")
     endif
-endfunction 
+endfunction
+
+" moldは型
+
+function! Javasnippet#getter(mold, fieldname) abort
+    let filetype = s:Filetype()
+    if strlen(filetype) == ''
+        echomsg 'このファイルの拡張子はjavaではありません'
+        return 0
+    else
+        call append('$', "public"." ".a:mold." get".a:fieldname.'()'.' {')
+        call append('$', '    return this.name;')
+        call append('$', '}')
+
+    endif
+endfunction
