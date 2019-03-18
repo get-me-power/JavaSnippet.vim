@@ -58,6 +58,5 @@ function! Javasnippet#getter(mold, fieldname) abort
         call append('$', "public"." ".a:mold." get".a:fieldname.'()'.' {')
         call append('$', '    return this.name;')
         call append('$', '}')
-
     endif
 endfunction
