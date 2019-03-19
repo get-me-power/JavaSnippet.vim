@@ -1,6 +1,10 @@
 "command! -nargs=+ Javasnippet call Javasnippet(<f-args>)
 "nargs=0は引数を取らないという意味
 
+if !exists('g:JavaSnippet#snippet_first')
+    let g:JavaSnippet#snippet_first = 0
+endif
+
 "好きなタイミングでJavaのsnippet補完を呼べるようにする
 function! Javasnippet#snippet(access, class) abort
     let filetype = s:Filetype()
@@ -36,14 +40,16 @@ function! s:Writebuffor(accessname, classname) abort
 endfunction "Writebuffor
 
 function! Javasnippet#snippet_first() abort
-    call append('0', "public class ".expand("%:r"). " {")
-    if expand("%:r") ==# 'Main'
-        call append('1', "    public static void main(String[] args) {")
-        call append('2', '')
-        call append('3', "    }")
-        "call append('4', '}')"
-    else
-        "call append('2', '}')"
+    if g:JavaSnippet#snippet_first
+        call append('0', "public class ".expand("%:r"). " {")
+        if expand("%:r") ==# 'Main'
+            call append('1', "    public static void main(String[] args) {")
+            call append('2', '')
+            call append('3', "    }")
+            "call append('4', '}')"
+        else
+            "call append('2', '}')"
+        endif
     endif
 endfunction
 
@@ -66,4 +72,16 @@ function! Javasnippet#setter(mold, fieldname) abort
     call append('$', '    this.name = name;')
     call append('$', '    "System.out.println(this.name);')
     call append('$', '}')
+endfunction
+
+function! Javasnippet#switch_on()
+    if g:JavaSnippet#snippet_first == 0
+        let g:JavaSnippet#snippet_first = 1
+    endif
+endfunction
+
+function! Javasnippet#switch_off()
+    if g:JavaSnippet#snippet_first == 1
+        let g:JavaSnippet#snippet_first = 0
+    endif
 endfunction
