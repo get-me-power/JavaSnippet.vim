@@ -5,6 +5,7 @@ endif
 let g:loaded_JavaSnippet = 1
 command! -nargs=+ Javasnippet call Javasnippet#snippet(<f-args>)
 command! -nargs=+ Getter call Javasnippet#getter(<f-args>)
+command! -nargs=+ Setter call Javasnippet#setter(<f-args>)
 
 augroup plugin-JavasnippetFirst
     autocmd!
