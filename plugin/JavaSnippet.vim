@@ -3,6 +3,10 @@ if exists('g:loaded_JavaSnippet')
 endif
 
 let g:loaded_JavaSnippet = 1
+
+"インデントコマンドを定義
+command! -nargs=0 Indent execute("normal " . "gg=G")
+
 command! -nargs=+ Javasnippet call Javasnippet#snippet(<f-args>)
 command! -nargs=+ Getter call Javasnippet#getter(<f-args>)
 command! -nargs=+ Setter call Javasnippet#setter(<f-args>)
