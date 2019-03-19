@@ -1,12 +1,9 @@
-"command! -nargs=+ Javasnippet call Javasnippet(<f-args>)
-"nargs=0は引数を取らないという意味
-
 if !exists('g:JavaSnippet#snippet_first')
     let g:JavaSnippet#snippet_first = 0
 endif
 
 "好きなタイミングでJavaのsnippet補完を呼べるようにする
-function! Javasnippet#snippet(access, class) abort
+function! JavaSnippet#snippet(access, class) abort
     let filetype = s:Filetype()
     let accessname = a:access
     let classname = a:class
@@ -39,7 +36,7 @@ function! s:Writebuffor(accessname, classname) abort
     endif
 endfunction "Writebuffor
 
-function! Javasnippet#snippet_first() abort
+function! JavaSnippet#snippet_first() abort
     if g:JavaSnippet#snippet_first
         call append('0', "public class ".expand("%:r"). " {")
         if expand("%:r") ==# 'Main'
@@ -55,7 +52,7 @@ endfunction
 
 " moldは型
 
-function! Javasnippet#getter(mold, fieldname) abort
+function! JavaSnippet#getter(mold, fieldname) abort
     let filetype = s:Filetype()
     if strlen(filetype) == ''
         echomsg 'このファイルの拡張子はjavaではありません'
@@ -67,21 +64,26 @@ function! Javasnippet#getter(mold, fieldname) abort
     endif
 endfunction
 
-function! Javasnippet#setter(mold, fieldname) abort
+function! JavaSnippet#setter(mold, fieldname) abort
     call append('$', "public"." ".a:mold." set".a:fieldname.'()'.' {')
     call append('$', '    this.name = name;')
     call append('$', '    "System.out.println(this.name);')
     call append('$', '}')
 endfunction
 
-function! Javasnippet#switch_on()
+function! JavaSnippet#switch_on()
     if g:JavaSnippet#snippet_first == 0
         let g:JavaSnippet#snippet_first = 1
     endif
 endfunction
 
-function! Javasnippet#switch_off()
+function! JavaSnippet#switch_off()
     if g:JavaSnippet#snippet_first == 1
         let g:JavaSnippet#snippet_first = 0
     endif
+endfunction
+
+function! JavaSnippet#InsertMethod(accessname, mold, methodname) abort
+    call append('$', a:accessname." static"." ".a:mold." ".a:methodname."() {")
+    call append('$', "}")
 endfunction
