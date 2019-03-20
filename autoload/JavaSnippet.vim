@@ -1,3 +1,5 @@
+let s:import_words = { 'java.util.Ramdom;':1}
+
 if !exists('g:JavaSnippet#snippet_first')
     let g:JavaSnippet#snippet_first = 0
 endif
@@ -83,7 +85,33 @@ function! JavaSnippet#switch_off()
     endif
 endfunction
 
+"staticつけるかつけないかで場合分けするか考えよう
 function! JavaSnippet#InsertMethod(accessname, mold, methodname) abort
     call append('$', a:accessname." static"." ".a:mold." ".a:methodname."() {")
     call append('$', "}")
 endfunction
+
+function! JavaSnippet#CompleteImport(findstart, base) abort
+    if a:findstart != 0
+        " 補完開始位置を決定する
+
+        "カーソルの直前の位置を計算する"
+        let prev_pos = col('.') - 1
+
+        " カーソルのある行のカーソルの前までの文字列を取得"
+        let before_str = getline('.')[0:prev_pos]
+
+        " before_strから正規表現を用いて最後の単語を切り出している"
+        " \mはmagic
+        let last_word = matchstr(before_str, '\m\(\k\+\)$')
+        let prefix_len = len(last_word)
+        let start_pos = prev_pos - prefix_len
+        return prefix_len <= 0 ? -1 : start_pos
+    else
+        "補完候補を検索する
+        let items = filter(keys(s:import_words), 'stridx(v:val, a:base) == 0')
+        return items
+    endif
+endfunction
+
+set completefunc=JavaSnippet#CompleteImport

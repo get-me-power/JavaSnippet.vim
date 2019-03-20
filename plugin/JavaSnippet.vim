@@ -11,6 +11,7 @@ command! -nargs=+ Javasnippet call JavaSnippet#snippet(<f-args>)
 command! -nargs=+ Getter call JavaSnippet#getter(<f-args>)
 command! -nargs=+ Setter call JavaSnippet#setter(<f-args>)
 command! -nargs=+ Method call JavaSnippet#InsertMethod(<f-args>)
+
 augroup plugin-JavasnippetFirst
     autocmd!
     autocmd FileType java call JavaSnippet#snippet_first()
