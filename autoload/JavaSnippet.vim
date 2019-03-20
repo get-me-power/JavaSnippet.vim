@@ -1,4 +1,4 @@
-let s:import_words = { 'java.util.Ramdom;':1}
+let s:import_words = { 'java.util.Ramdom;':1, 'java.util.Carender;':2}
 
 if !exists('g:JavaSnippet#snippet_first')
     let g:JavaSnippet#snippet_first = 0
@@ -91,7 +91,11 @@ function! JavaSnippet#InsertMethod(accessname, mold, methodname) abort
     call append('$', "}")
 endfunction
 
-function! JavaSnippet#CompleteImport(findstart, base) abort
+function!  JavaSnippet#CompleteImport() abort
+    call feedkeys("iimport \<C-x>\<C-u>")
+endfunction
+
+function! JavaSnippet#SuggestImport(findstart, base)
     if a:findstart != 0
         " 補完開始位置を決定する
 
@@ -114,4 +118,5 @@ function! JavaSnippet#CompleteImport(findstart, base) abort
     endif
 endfunction
 
-set completefunc=JavaSnippet#CompleteImport
+"ユーザー定義コマンドを定義
+set completefunc=JavaSnippet#SuggestImport
