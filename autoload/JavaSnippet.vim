@@ -1,9 +1,10 @@
-"import文の補完候補をリストに追加
-
 "Todo listを別ファイルから参照する方法 and 自分で簡易的に補完候補を定義する方法
 " let s:import_words = { 'java.util.Ramdom;':1, 'java.util.Carender;':2 }
-
 " 空のリストに dict/Import_Java.txtファイルから補完候補を読み取る様にする
+
+let s:save_cpo = &cpo
+set cpo&vim
+
 let s:import_dicts = []
 
 if !exists('g:JavaSnippet#snippet_first')
@@ -19,7 +20,7 @@ function! JavaSnippet#snippet(access, class) abort
         echomsg 'このファイルの拡張子はjavaではありません: '. expand('%')
         return 0
     else
-        call s:Writebuffor(accessname, classname)
+        call s:WriteClass(accessname, classname)
     endif
 endfunction " Javasnippet
 
@@ -31,16 +32,11 @@ function! s:Filetype() abort
     endif
 endfunction "Filetype
 
-function! s:Writebuffor(accessname, classname) abort
+function! s:WriteClass(accessname, classname) abort
     "$は，バッファの末尾
     call append('$', a:accessname." class ".a:classname. " {")
     if a:classname ==# 'Main'
         call append('$', "    public static void main(String[] args) {")
-        call append('$', '')
-        call append('$', "    }")
-        call append('$', "}")
-    else
-        call append('$', "}")
     endif
 endfunction "Writebuffor
 
@@ -138,3 +134,6 @@ endfunction
 
 "ユーザー定義コマンドを定義
 set completefunc=JavaSnippet#SuggestImport
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
