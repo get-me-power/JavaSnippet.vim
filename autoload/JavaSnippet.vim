@@ -1,8 +1,10 @@
 "import文の補完候補をリストに追加
 
 "Todo listを別ファイルから参照する方法 and 自分で簡易的に補完候補を定義する方法
-let s:import_words = { 'java.util.Ramdom;':1, 'java.util.Carender;':2 }
-let s:tests = ['java.util', 'aa']
+" let s:import_words = { 'java.util.Ramdom;':1, 'java.util.Carender;':2 }
+
+" 空のリストに dict/Import_Java.txtファイルから補完候補を読み取る様にする
+let s:import_dicts = []
 
 if !exists('g:JavaSnippet#snippet_first')
     let g:JavaSnippet#snippet_first = 0
@@ -117,20 +119,20 @@ function! JavaSnippet#SuggestImport(findstart, base)
         return prefix_len <= 0 ? -1 : start_pos
     else
         "補完候補を検索する
-        let items = filter(s:tests, 'stridx(v:val, a:base) == 0')
+        call JavaSnippet#fileread()
+        let items = filter(s:import_dicts, 'stridx(v:val, a:base) == 0')
         return items
     endif
 endfunction
 
-let s:dict = []
 " 補完候補をdict/JavaImport.txtから読み出せるようにする
 function! JavaSnippet#fileread()
     let filename = "../dict/JavaImport.txt"
     let lines = readfile(filename)
     for line in lines
         "echo line
-        call add(s:dict, line)
-        echo s:dict
+        call add(s:import_dicts, line)
+        "echo s:dict
    endfor
 endfunction
 
