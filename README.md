@@ -1,47 +1,39 @@
-# Javasnippet.vim
+# JavaSnippet.vim
 
-Javaのsnippet補完をするpluginです
+## Introduction
 
-## インストール方法
+This plugin can do snippet complement java language.
 
-" Todo
+## Installation
 
-## 使い方
-
-```
-:Javasnippet アクセス修飾子(publicとか) class名
-```
-でsnippet補完ができます
+[dein.vim](https://github.com/Shougo/dein.vim)
 
 ```
-:SwitchOn
+call dein#add('kazukazuinaina/JavaSnippet.vim')
 ```
-で，.javaのファイルを開いた瞬間にclassをsnippetできます
+
+[Vim-plug](https://github.com/Shougo/dein.vim)
 
 ```
-:SwitchOff
+Plug 'kazukazuinaina/JavaSnippet.vim'
 ```
-で，ファイルを開いた瞬間の自動補完をoffにできます
 
-**defaultはoffになっています**
+## What to use
 
-```
-:Indent
-```
-でindentができます
+### Command List
 
-```
-:Getter
-```
-でGetterのsnippet補完ができます．
+| Command                                    | Description                                                        |
+| -----------------------------------        | ------------------------------------------------------------------ |
+| `Javasnippet [accessname] [classname]`     | Do complement class sentence                                       |
+| `Getter [mold] [fieldname]`                | Do complete getter method for java                                 |
+| `Setter[mold] [fieldname]`                 | Do complete setter method for java                                 |
+| `Method [accessname] [mold] [methodname] ` | Do complete something method for java                              |
+| `SwitchOn`                                 | You can establish auto complete about class sentence               |
+| `SwitchOff`                                | You can establish auto complete about class sentence               |
+| `Method`                                   | Do complete something method adout java language                   |
+| `Import`                                   | Do complement import sentence for ./dict/JavaImport.txt            |
+| `Indent`                                   | You can easily adjust all buffor`s indent                          |
 
-```
-:Setter
-```
-でSetterのsnippet補完ができます．
+## Lisence
 
-## これから追加したい機能
-
-import文の補完
-
-関数のsnippet補完
+MIT
