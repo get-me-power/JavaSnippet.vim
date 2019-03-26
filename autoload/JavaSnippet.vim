@@ -123,8 +123,8 @@ endfunction
 
 " 補完候補をdict/JavaImport.txtから読み出せるようにする
 function! JavaSnippet#fileread()
-    let filename = "../dict/JavaImport.txt"
-    let lines = readfile(filename)
+    "let filename = "../dict/JavaImport.txt"
+    let lines = readfile(expand('~/.dict'))
     for line in lines
         "echo line
         call add(s:import_dicts, line)
