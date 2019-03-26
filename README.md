@@ -30,10 +30,16 @@ Plug 'kazukazuinaina/JavaSnippet.vim'
 | `Method [accessname] [mold] [methodname] ` | Do complete something method for java                              |
 | `SwitchOn`                                 | You can establish auto complete about class sentence               |
 | `SwitchOff`                                | You can establish auto complete about class sentence               |
-| `Import`                                   | Do complement import sentence for ./dict/JavaImport.txt            |
+| `Import`                                   | Do complement import sentence for ~/.dict/JavaImport.txt           |
 | `Indent`                                   | You can easily adjust all buffor`s indent                          |
 
 **default`s auto complete about class sentence is off!!**
+
+## Caution
+
+If you want to use Import command,
+
+**please trancefar dict/JavaImport.txt to ~.dict/JavaImport.txt**
 
 ## Lisence
 
