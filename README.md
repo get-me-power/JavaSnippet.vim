@@ -39,7 +39,7 @@ Plug 'kazukazuinaina/JavaSnippet.vim'
 
 If you want to use Import command,
 
-**please trancefar dict/JavaImport.txt to ~.dict/JavaImport.txt**
+**please transfar this directory's file 'dict/JavaImport.txt' to '~.dict/JavaImport.txt'**
 
 ## Lisence
 
