@@ -21,6 +21,7 @@ function! JavaSnippet#snippet(access, class) abort
         return 0
     else
         call s:WriteClass(accessname, classname)
+        execute("normal " . "gg=G")
     endif
 endfunction " Javasnippet
 
@@ -65,6 +66,7 @@ function! JavaSnippet#getter(mold, fieldname) abort
         call append('$', "public"." ".a:mold." get".a:fieldname.'()'.' {')
         call append('$', '    return this.name;')
         call append('$', '}')
+        execute("normal " . "gg=G")
     endif
 endfunction
 
@@ -73,6 +75,7 @@ function! JavaSnippet#setter(mold, fieldname) abort
     call append('$', '    this.name = name;')
     call append('$', '    "System.out.println(this.name);')
     call append('$', '}')
+    execute("normal " . "gg=G")
 endfunction
 
 function! JavaSnippet#switch_on()
